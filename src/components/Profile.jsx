@@ -1,22 +1,59 @@
 import React, { useState } from 'react'
+import DisplayTable from './DisplayTable.jsx'
 
 const Profile = () => {
-  const[data,setData]=useState({})
-  const[username,setUsername]=useState('')
-  const onChangeHandler=(e)=>{
+  const [data, setData] = useState({})
+  const [username, setUsername] = useState('')
+  const [repositories, setRepositories] = useState('')
+
+  const onChangeHandler = (e) => {
     setUsername(e.target.value);
   }
-  const submitHandler= async (e)=>{
+  const submitHandler = async (e) => {
     e.preventDefault();
-    const profile =await fetch(`https://api.github.com/search/users/${username}`)
-    const profilejson=await profile.json();
-    console.log(profilejson);
+    /* API for github user fetched */
+    const profile = await fetch(`https://api.github.com/users/${username}`)
+    const profileJson = await profile.json();
+    // console.log(profileJson);
+
+    const repositories = await fetch(profileJson.repos_url)
+    const repoJson = await repositories.json()
+    console.log(repoJson);
+
+    if (profileJson) {
+      setData(profileJson)
+      setRepositories(repoJson)
+    }
+
   }
   return (
-    <div>
-      <input type='text' value={username} onChange={onChangeHandler}/>
-      <button type='submit' onClick={submitHandler}>Search</button>
-    </div>
+    <>
+      <div style={{ padding: "20px" }}>
+        <div className="ui search">
+          <div className="ui icon input">
+            <i className="search icon"></i>
+            
+            <input
+              className='prompt'
+              type='text'
+              value={username}
+              placeholder="Search Username..."
+              onChange={onChangeHandler} />
+
+          </div>
+        </div>
+
+        <button
+          className="ui twitter button"
+          type='submit'
+          onClick={submitHandler}>
+          <i class="github icon"></i>
+          Search
+        </button>
+
+        <DisplayTable data={data} repositories={repositories} />
+      </div>
+    </>
   )
 }
 

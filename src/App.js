@@ -6,9 +6,11 @@ function App() {
   return (
     <div className="App">
       <header className='App-header'>
-        <img src={logo} alt='github-logo'></img>
+        <a href="#">
+          <img src={logo} alt='github-logo' />
+        </a>
       </header>
-      <Profile/>
+      <Profile />
 
     </div>
   );
