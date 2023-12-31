@@ -26,18 +26,18 @@ const DisplayTable = ({ data, repositories }) => {
                         <td>
                             {repositories.map(repo => (
                             <div className="ui relaxed divided list" key={repo.name}>
-                                <div className="item">
-                                    <i className="large github middle aligned icon"></i>
-                                    <div className="content">
-                                        <a
-                                            href={repo.html_url}
-                                            className="header"
-                                            target='_blank'>
-                                            {repo.name}
-                                        </a>
-                                    </div>
+                            <div className="item">
+                                <i className="large github middle aligned icon"></i>
+                                <div className="content">
+                                    <a
+                                        href={repo.html_url}
+                                        className="header"
+                                        target='_blank'>
+                                        {repo.name}
+                                    </a>
                                 </div>
                             </div>
+                        </div>
                         ))}
                         </td>
                     </tr>

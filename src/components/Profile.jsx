@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import DisplayTable from './DisplayTable.jsx'
+import Css from "../App.css"
 
 const Profile = () => {
   const [data, setData] = useState({})
   const [username, setUsername] = useState('')
-  const [repositories, setRepositories] = useState('')
+  const [repositories, setRepositories] = useState([])
 
   const onChangeHandler = (e) => {
     setUsername(e.target.value);
@@ -28,7 +29,7 @@ const Profile = () => {
   }
   return (
     <>
-      <div style={{ padding: "20px" }}>
+      <div style={{ padding: "20px", margin:"20px"}}>
         <div className="ui search">
           <div className="ui icon input">
             <i className="search icon"></i>
@@ -46,7 +47,8 @@ const Profile = () => {
         <button
           className="ui twitter button"
           type='submit'
-          onClick={submitHandler}>
+          onClick={submitHandler}
+          style={{margin:"20px"}}>
           <i class="github icon"></i>
           Search
         </button>

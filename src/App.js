@@ -6,9 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className='App-header'>
-        <a href="#">
           <img src={logo} alt='github-logo' />
-        </a>
       </header>
       <Profile />
 
